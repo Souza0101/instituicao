@@ -1,0 +1,40 @@
+create table aluno (
+	nome varchar(20),
+	idade integer,
+	sexo varchar(20),
+	instituicao varchar(20),
+	telefone varchar(20),
+	PRIMARY KEY(nome))
+create table sala ( 
+	numerosala integer,
+	PRIMARY key (numerosala))
+create TABLE professor (
+	nomeprof varchar(20),
+	telefone varchar(20),
+	PRIMARY KEY (nomeprof))
+create table aula (
+	numeroaula integer,
+	nomeprof varchar(20),
+	numerosala integer,
+	sala integer,
+  	dataaula date,
+  	modalidade varchar(20),
+  	PRIMARY KEY ( numeroaula ),
+  	FOREIGN key ( nomeprof ) REFERENCES professor ( nomeprof ),
+  	FOREIGN key ( numerosala ) references sala ( numerosala ))
+CREATE TABLE aluno_has_aula (
+  nome varchar(20),
+  numerosala integer,
+  PRIMARY key ( nome ),
+  foreign key (numerosala) references sala (numerosala));
+insert into aluno (nome, idade, sexo, instituicao, telefone)
+values ('Cleber',47, 'masculino', 'CIN', 999876543), ('Gustavo', 14, 'masculino', 'ufmt', 999131313), ('Pedro', 25, 'masculino', 'EsPCEx', 999241512);
+insert into professor (nomeprof, telefone)
+values('Cleiton Rocha', 99875432), ('Inara', 999654321), ('Kay Carter', 65432189);
+INSERT into sala (numerosala)
+values (12),(9),(8);
+insert into aula (numeroaula, nomeprof, numerosala, sala, dataaula, modalidade)
+values (1, 'Inara', 12, 12, '2023-08-08','matematica'), (2, 'Cleiton Rocha', 9, 9, '2023-05-28', 'programacao'), (3, 'Kay Carter', 8, 8, '2023-08-27', 'logica');
+insert into aluno_has_aula (nome, numerosala)
+values('Gustavo', 12), ('Cleber', 8), ('Pedro', 9);
+select * from aluno;
